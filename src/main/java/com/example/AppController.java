@@ -23,13 +23,13 @@ public class AppController {
     }
 
     @GetMapping("/get-data")
-    public ResponseEntity getData() {
+    public ResponseEntity<List<User>> getData() {
         List<User> users = fetchDataFromDB();
         return ResponseEntity.ok(users);
     }
 
     @PostMapping("/update-roles")
-    public ResponseEntity updateRoles(@RequestBody ArrayList<User> users) {
+    public ResponseEntity<List<User>> updateRoles(@RequestBody ArrayList<User> users) {
         updateDatabase(users);
         return ResponseEntity.ok(users);
     }
@@ -81,10 +81,6 @@ public class AppController {
 
         }
 
-        public User(String name, String role) {
-            this.name = name;
-            this.role = role;
-        }
 
         private void setName(String name) {
             this.name = name;
@@ -94,9 +90,9 @@ public class AppController {
             this.role = role;
         }
 
-        public String getName() {
-            return name;
-        }
+        // public String getName() {
+        //     return name;
+        // }
 
         public String getRole() {
             return role;
